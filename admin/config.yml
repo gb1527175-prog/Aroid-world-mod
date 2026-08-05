@@ -6,22 +6,18 @@ media_folder: images/uploads
 public_folder: /images/uploads
 
 collections:
-    - name: games
+  - name: games
     label: Games
     folder: games
     create: true
     slug: "{{slug}}"
     fields:
-            - {label: "Title", name: "title", widget: "string"}
-            - {label: "Description", name: "description", widget: "text"}
-            - {label: "Game File URL", name: "game_url", widget: "string"}
-            - {label: "Thumbnail", name: "thumbnail", widget: "image"}
-    - name: blogs
-    label: Blogs
-    folder: blogs
-    create: true
-    slug: "{{slug}}"
-    extension: html
-    fields:
-            - {label: "Title", name: "title", widget: "string"}
-            - {label: "Body", name: "body", widget: "markdown"}
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Description", name: "description", widget: "text" }
+      - label: "Body (HTML)"
+        name: "body"
+        widget: "code"
+        default_language: "html"
+        allow_language_selection: false
+      - { label: "Game File URL", name: "game_url", widget: "string" }
+      - { label: "Thumbnail", name: "thumbnail", widget: "image" }
