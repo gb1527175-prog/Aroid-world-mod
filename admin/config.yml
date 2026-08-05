@@ -12,12 +12,22 @@ collections:
     create: true
     slug: "{{slug}}"
     fields:
-      - { label: "Title", name: "title", widget: "string" }
-      - { label: "Description", name: "description", widget: "text" }
-      - label: "Body (HTML)"
+      - label: "Title"
+        name: "title"
+        widget: "string"
+
+      - label: "Description"
+        name: "description"
+        widget: "text"
+
+      - label: "Body"
         name: "body"
-        widget: "code"
-        default_language: "html"
-        allow_language_selection: false
-      - { label: "Game File URL", name: "game_url", widget: "string" }
-      - { label: "Thumbnail", name: "thumbnail", widget: "image" }
+        widget: "markdown"
+
+      - label: "Game File URL"
+        name: "game_url"
+        widget: "string"
+
+      - label: "Thumbnail"
+        name: "thumbnail"
+        widget: "image"
