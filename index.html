@@ -1,36 +1,821 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>NES World 8 - Play Classic Games</title>
-  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-  <style>
-    body { font-family: Arial, sans-serif; background:#0f0f0f; color:#fff; text-align:center; padding:20px; }
-    h1 { color:#ff4500; }
-    .game-list { display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:15px; margin-top:20px; }
-    .game { background:#1e1e1e; padding:15px; border-radius:10px; }
-    a { color:#00ff88; text-decoration:none; }
-  </style>
-</head>
-<body>
-  <h1>🎮 NES World 8</h1>
-  <p>Play Classic Retro Games</p>
-  <div class="game-list" id="games">Loading games...</div>
 
-  <script>
-    // Netlify Identity - Recovery & Login handle
-    if (window.netlifyIdentity) {
-      window.netlifyIdentity.on("init", user => {
-        if (!user) {
-          window.netlifyIdentity.on("login", () => {
-            document.location.href = "/admin/";
-          });
-        }
-      });
-    }
-    // Simple games loader
-    document.getElementById('games').innerHTML = '<p>Welcome! <a href="/admin/">Go to Admin</a> to add games.</p>';
-  </script>
-</body>
-</html>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>APK World - Games, Apps & MOD APK Download</title>
+
+<meta name="description" content="Download the latest Android Games, Apps and MOD APK with a clean Google Play Store style interface.">
+
+<meta name="keywords" content="MOD APK, Android Games, Apps, Premium APK, Google Play Style, APK Download">
+
+<meta name="author" content="APK World">
+
+<meta name="robots" content="index, follow">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="APK World">
+<meta property="og:description" content="Games, Apps & MOD APK Downloads">
+<meta property="og:image" content="assets/images/logo.png">
+
+<meta name="theme-color" content="#0f9d58">
+
+<link rel="icon" href="assets/images/favicon.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="assets/css/style.css">
+
+<script type="application/ld+json">
+{
+ "@context":"https://schema.org",
+ "@type":"WebSite",
+ "name":"APK World",
+ "url":"https://example.netlify.app",
+ "potentialAction":{
+ "@type":"SearchAction",
+ "target":"https://example.netlify.app/?search={search_term_string}",
+ "query-input":"required name=search_term_string"
+ }
+}
+</script>
+
+</head>
+
+<body>
+
+<div id="loader">
+
+<div class="spinner"></div>
+
+</div>
+
+<header class="topbar">
+
+<div class="container">
+
+<div class="logo">
+
+<a href="index.html">
+
+<img src="assets/images/logo.png" alt="APK World">
+
+<span>APK World</span>
+
+</a>
+
+</div>
+
+<div class="search-box">
+
+<input
+type="text"
+id="searchInput"
+placeholder="Search apps & games...">
+
+<button id="searchBtn">
+
+🔍
+
+</button>
+
+</div>
+
+<div class="top-actions">
+
+<button id="themeToggle">
+
+🌙
+
+</button>
+
+</div>
+
+</div>
+
+</header>
+
+<nav class="category-bar">
+
+<div class="container">
+
+<a href="#" class="active">For You</a>
+
+<a href="#">Games</a>
+
+<a href="#">Apps</a>
+
+<a href="#">MOD APK</a>
+
+<a href="#">Trending</a>
+
+<a href="#">Top Charts</a>
+
+<a href="#">Editor's Choice</a>
+
+<a href="#">Action</a>
+
+<a href="#">Racing</a>
+
+<a href="#">Adventure</a>
+
+<a href="#">Arcade</a>
+
+<a href="#">Simulation</a>
+
+<a href="#">Productivity</a>
+
+<a href="#">Photography</a>
+
+<a href="#">Tools</a>
+
+</div>
+
+</nav>
+
+<main>
+
+<section class="hero">
+
+<div class="container">
+
+<div class="hero-content">
+
+<div class="hero-text">
+
+<h1>
+
+Download Premium Android Apps & Games
+
+</h1>
+
+<p>
+
+Discover the newest Games, Apps and MOD APK with a beautiful Google Play Store experience.
+
+</p>
+
+<div class="hero-buttons">
+
+<a href="#featured" class="btn green">
+
+Explore
+
+</a>
+
+<a href="#latest" class="btn white">
+
+Latest APK
+
+</a>
+
+</div>
+
+</div>
+
+<div class="hero-image">
+
+<img
+src="assets/images/hero.webp"
+alt="Hero Banner">
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<section id="featured" class="section">
+
+<div class="container">
+
+<div class="section-header">
+
+<h2>Featured Apps</h2>
+
+<a href="#">See all</a>
+
+</div>
+
+<div class="horizontal-scroll">
+
+<article class="app-card">
+
+<a href="game.html">
+
+<img
+src="assets/images/app1.webp"
+alt="Minecraft">
+
+<h3>Minecraft</h3>
+
+<p>Mojang</p>
+
+<div class="rating">
+
+★★★★★
+<span>4.8</span>
+
+</div>
+
+</a>
+
+</article>
+
+<article class="app-card">
+
+<a href="game.html">
+
+<img
+src="assets/images/app2.webp"
+alt="Spotify">
+
+<h3>Spotify Premium</h3>
+
+<p>Music</p>
+
+<div class="rating">
+
+★★★★★
+<span>4.9</span>
+
+</div>
+
+</a>
+
+</article>
+
+<article class="app-card">
+
+<a href="game.html">
+
+<img
+src="assets/images/app3.webp"
+alt="CapCut">
+
+<h3>CapCut MOD</h3>
+
+<p>Video Editor</p>
+
+<div class="rating">
+
+★★★★★
+<span>4.8</span>
+
+</div>
+
+</a>
+
+</article>
+
+<article class="app-card">
+
+<a href="game.html">
+
+<img
+src="assets/images/app4.webp"
+alt="BGMI">
+
+<h3>BGMI</h3>
+
+<p>Battle Royale</p>
+
+<div class="rating">
+
+★★★★★
+<span>4.7</span>
+
+</div>
+
+</a>
+
+</article>
+
+<article class="app-card">
+
+<a href="game.html">
+
+<img
+src="assets/images/app5.webp"
+alt="Netflix">
+
+<h3>Netflix MOD</h3>
+
+<p>Entertainment</p>
+
+<div class="rating">
+
+★★★★★
+<span>4.8</span>
+
+</div>
+
+</a>
+
+</article>
+
+</div>
+
+</div>
+
+</section>
+  <section id="trending" class="section">
+
+<div class="container">
+
+<div class="section-header">
+
+<h2>Trending Games</h2>
+
+<a href="#">See all</a>
+
+</div>
+
+<div class="horizontal-scroll">
+
+<article class="app-card">
+
+<a href="game.html">
+<img src="assets/images/game1.webp" alt="GTA San Andreas">
+<h3>GTA San Andreas</h3>
+<p>Action</p>
+<div class="rating">★★★★★ <span>4.9</span></div>
+</a>
+
+</article>
+
+<article class="app-card">
+
+<a href="game.html">
+<img src="assets/images/game2.webp" alt="Free Fire MAX">
+<h3>Free Fire MAX</h3>
+<p>Battle Royale</p>
+<div class="rating">★★★★★ <span>4.7</span></div>
+</a>
+
+</article>
+
+<article class="app-card">
+
+<a href="game.html">
+<img src="assets/images/game3.webp" alt="Subway Surfers">
+<h3>Subway Surfers</h3>
+<p>Arcade</p>
+<div class="rating">★★★★★ <span>4.8</span></div>
+</a>
+
+</article>
+
+<article class="app-card">
+
+<a href="game.html">
+<img src="assets/images/game4.webp" alt="Asphalt 9">
+<h3>Asphalt 9</h3>
+<p>Racing</p>
+<div class="rating">★★★★★ <span>4.8</span></div>
+</a>
+
+</article>
+
+<article class="app-card">
+
+<a href="game.html">
+<img src="assets/images/game5.webp" alt="Minecraft">
+<h3>Minecraft</h3>
+<p>Adventure</p>
+<div class="rating">★★★★★ <span>4.8</span></div>
+</a>
+
+</article>
+
+</div>
+
+</div>
+
+</section>
+
+<section id="latest" class="section">
+
+<div class="container">
+
+<div class="section-header">
+
+<h2>Latest MOD APK</h2>
+
+<a href="#">View all</a>
+
+</div>
+
+<div class="grid-layout">
+
+<article class="grid-card">
+
+<a href="game.html">
+
+<img src="assets/images/mod1.webp" alt="YouTube Premium">
+
+<h3>YouTube Premium</h3>
+
+<p>Ads Free • Premium Unlocked</p>
+
+<span class="download-btn">
+
+Download
+
+</span>
+
+</a>
+
+</article>
+
+<article class="grid-card">
+
+<a href="game.html">
+
+<img src="assets/images/mod2.webp" alt="PicsArt">
+
+<h3>PicsArt Gold</h3>
+
+<p>Premium Features</p>
+
+<span class="download-btn">
+
+Download
+
+</span>
+
+</a>
+
+</article>
+
+<article class="grid-card">
+
+<a href="game.html">
+
+<img src="assets/images/mod3.webp" alt="Alight Motion">
+
+<h3>Alight Motion</h3>
+
+<p>No Watermark</p>
+
+<span class="download-btn">
+
+Download
+
+</span>
+
+</a>
+
+</article>
+
+<article class="grid-card">
+
+<a href="game.html">
+
+<img src="assets/images/mod4.webp" alt="Kinemaster">
+
+<h3>Kinemaster</h3>
+
+<p>Premium Unlocked</p>
+
+<span class="download-btn">
+
+Download
+
+</span>
+
+</a>
+
+</article>
+
+<article class="grid-card">
+
+<a href="game.html">
+
+<img src="assets/images/mod5.webp" alt="Canva">
+
+<h3>Canva Pro</h3>
+
+<p>Premium Templates</p>
+
+<span class="download-btn">
+
+Download
+
+</span>
+
+</a>
+
+</article>
+
+<article class="grid-card">
+
+<a href="game.html">
+
+<img src="assets/images/mod6.webp" alt="Remini">
+
+<h3>Remini AI</h3>
+
+<p>Unlimited Enhance</p>
+
+<span class="download-btn">
+
+Download
+
+</span>
+
+</a>
+
+</article>
+
+</div>
+
+</div>
+
+</section>
+
+<section class="section">
+
+<div class="container">
+
+<div class="section-header">
+
+<h2>Top Charts</h2>
+
+<a href="#">More</a>
+
+</div>
+
+<div class="top-chart">
+
+<div class="chart-item">
+
+<span class="rank">1</span>
+
+<img src="assets/images/app1.webp" alt="Minecraft">
+
+<div class="chart-info">
+
+<h3>Minecraft</h3>
+
+<p>Adventure</p>
+
+</div>
+
+<a href="game.html" class="install-btn">
+
+Install
+
+</a>
+
+</div>
+
+<div class="chart-item">
+
+<span class="rank">2</span>
+
+<img src="assets/images/app2.webp" alt="Spotify">
+
+<div class="chart-info">
+
+<h3>Spotify Premium</h3>
+
+<p>Music</p>
+
+</div>
+
+<a href="game.html" class="install-btn">
+
+Install
+
+</a>
+
+</div>
+
+<div class="chart-item">
+
+<span class="rank">3</span>
+
+<img src="assets/images/app3.webp" alt="CapCut">
+
+<div class="chart-info">
+
+<h3>CapCut MOD</h3>
+
+<p>Video Editor</p>
+
+</div>
+
+<a href="game.html" class="install-btn">
+
+Install
+
+</a>
+
+</div>
+
+<div class="chart-item">
+
+<span class="rank">4</span>
+
+<img src="assets/images/game2.webp" alt="Free Fire">
+
+<div class="chart-info">
+
+<h3>Free Fire MAX</h3>
+
+<p>Action</p>
+
+</div>
+
+<a href="game.html" class="install-btn">
+
+Install
+
+</a>
+
+</div>
+
+<div class="chart-item">
+
+<span class="rank">5</span>
+
+<img src="assets/images/mod6.webp" alt="Remini">
+
+<div class="chart-info">
+
+<h3>Remini AI</h3>
+
+<p>Photography</p>
+
+</div>
+
+<a href="game.html" class="install-btn">
+
+Install
+
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+  
+<section class="section">
+
+<div class="container">
+
+<div class="section-header">
+
+<h2>Recommended For You</h2>
+
+<a href="#">View All</a>
+
+</div>
+
+<div class="grid-layout">
+
+<article class="grid-card">
+<a href="game.html">
+<img src="assets/images/recommend1.webp" alt="Telegram Premium">
+<h3>Telegram Premium</h3>
+<p>Communication</p>
+<span class="download-btn">Install</span>
+</a>
+</article>
+
+<article class="grid-card">
+<a href="game.html">
+<img src="assets/images/recommend2.webp" alt="Adobe Lightroom">
+<h3>Lightroom MOD</h3>
+<p>Photography</p>
+<span class="download-btn">Install</span>
+</a>
+</article>
+
+<article class="grid-card">
+<a href="game.html">
+<img src="assets/images/recommend3.webp" alt="Dead Trigger">
+<h3>Dead Trigger</h3>
+<p>Zombie Action</p>
+<span class="download-btn">Install</span>
+</a>
+</article>
+
+<article class="grid-card">
+<a href="game.html">
+<img src="assets/images/recommend4.webp" alt="Shadow Fight">
+<h3>Shadow Fight</h3>
+<p>Fighting</p>
+<span class="download-btn">Install</span>
+</a>
+</article>
+
+<article class="grid-card">
+<a href="game.html">
+<img src="assets/images/recommend5.webp" alt="Snapseed">
+<h3>Snapseed</h3>
+<p>Photo Editor</p>
+<span class="download-btn">Install</span>
+</a>
+</article>
+
+<article class="grid-card">
+<a href="game.html">
+<img src="assets/images/recommend6.webp" alt="MX Player">
+<h3>MX Player Pro</h3>
+<p>Video Player</p>
+<span class="download-btn">Install</span>
+</a>
+</article>
+
+</div>
+
+</div>
+
+</section>
+
+<section class="section faq">
+
+<div class="container">
+
+<h2>Frequently Asked Questions</h2>
+
+<div class="faq-item">
+<h3>What is MOD APK?</h3>
+<p>A MOD APK is a modified version of an Android app or game that may include unlocked premium features, unlimited resources, or other changes made by third parties.</p>
+</div>
+
+<div class="faq-item">
+<h3>Are all downloads free?</h3>
+<p>Yes. The website is designed to list free Android games, apps, and MOD APK information.</p>
+</div>
+
+<div class="faq-item">
+<h3>Can I search for apps?</h3>
+<p>Yes. Use the search bar at the top of the homepage to quickly find games and applications.</p>
+</div>
+
+<div class="faq-item">
+<h3>Does the website support dark mode?</h3>
+<p>Yes. Tap the moon icon in the header to switch between light and dark themes.</p>
+</div>
+
+</div>
+
+</section>
+
+</main>
+
+<footer class="footer">
+
+<div class="container">
+
+<div class="footer-grid">
+
+<div>
+
+<h3>APK World</h3>
+
+<p>
+Discover Android Games, Apps and MOD APK with a modern Google Play Store inspired interface.
+</p>
+
+</div>
+
+<div>
+
+<h3>Categories</h3>
+
+<ul>
+
+<li><a href="#">Games</a></li>
+<li><a href="#">Apps</a></li>
+<li><a href="#">MOD APK</a></li>
+<li><a href="#">Top Charts</a></li>
+<li><a href="#">Trending</a></li>
+
+</ul>
+
+</div>
+
+<div>
+
+<h3>Quick Links</h3>
+
+<ul>
+
+<li><a href="#">Privacy Policy</a></li>
+<li><a href="#">DMCA</a></li>
+<li><a href="#">Disclaimer</a></li>
+<li
