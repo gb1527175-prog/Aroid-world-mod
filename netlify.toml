@@ -1,0 +1,99 @@
+#==================================================
+# APK World
+# Netlify Configuration
+# netlify.toml
+#==================================================
+
+
+[build]
+
+publish = "."
+
+
+
+#==============================
+# Decap CMS Authentication
+#==============================
+
+[[redirects]]
+
+from = "/admin/*"
+
+to = "/admin/index.html"
+
+status = 200
+
+
+
+#==============================
+# Security Headers
+#==============================
+
+[[headers]]
+
+for = "/*"
+
+[headers.values]
+
+X-Frame-Options = "SAMEORIGIN"
+
+X-XSS-Protection = "1; mode=block"
+
+X-Content-Type-Options = "nosniff"
+
+Referrer-Policy = "strict-origin-when-cross-origin"
+
+
+
+#==============================
+# Cache Assets
+#==============================
+
+[[headers]]
+
+for = "/assets/*"
+
+[headers.values]
+
+Cache-Control = "public, max-age=31536000, immutable"
+
+
+
+#==============================
+# HTML Cache
+#==============================
+
+[[headers]]
+
+for = "/*.html"
+
+[headers.values]
+
+Cache-Control = "public, max-age=0, must-revalidate"
+APK-World/
+│
+├── index.html
+│
+├── game.html
+│
+├── netlify.toml
+│
+├── admin/
+│   ├── index.html
+│   └── config.yml
+│
+├── assets/
+│   │
+│   ├── css/
+│   │   └── style.css
+│   │
+│   ├── js/
+│   │   └── app.js
+│   │
+│   └── images/
+│
+└── content/
+    │
+    ├── apps/
+    │
+    └── games/
