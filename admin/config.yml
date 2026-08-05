@@ -1,1 +1,16 @@
-config.yml
+backend:
+  name: git-gateway
+  branch: main
+media_folder: "images/uploads"
+public_folder: "/images/uploads"
+collections:
+    - name: "games"
+    label: "Games"
+    folder: "games"
+    create: true
+    slug: "{{slug}}"
+    fields:
+            - {label: "Title", name: "title", widget: "string"}
+            - {label: "Description", name: "description", widget: "text"}
+            - {label: "Game File URL", name: "game_url", widget: "string"}
+            - {label: "Thumbnail", name: "thumbnail", widget: "image"}
