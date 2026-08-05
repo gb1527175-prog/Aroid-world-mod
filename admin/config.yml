@@ -6,13 +6,25 @@ media_folder: images/uploads
 public_folder: /images/uploads
 
 collections:
-  - name: games
+    - name: games
     label: Games
     folder: games
     create: true
     slug: "{{slug}}"
     fields:
-      - { label: "Title", name: "title", widget: "string" }
-      - { label: "Description", name: "description", widget: "text" }
-      - { label: "Game File URL", name: "game_url", widget: "string" }
-      - { label: "Thumbnail", name: "thumbnail", widget: "image" }
+            - {label: "Title", name: "title", widget: "string"}
+            - {label: "Description", name: "description", widget: "text"}
+            - {label: "Game File URL", name: "game_url", widget: "string"}
+            - {label: "Thumbnail", name: "thumbnail", widget: "image"}
+    - name: blogs
+    label: Blogs / HTML Pages
+    folder: blogs
+    create: true
+    extension: html
+    format: frontmatter
+    slug: "{{slug}}"
+    fields:
+            - {label: "Title", name: "title", widget: "string"}
+            - {label: "Description", name: "description", widget: "string"}
+            - {label: "Thumbnail", name: "thumbnail", widget: "image"}
+            - {label: "HTML Content", name: "body", widget: "html"}
