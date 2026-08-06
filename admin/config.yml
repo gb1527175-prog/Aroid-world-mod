@@ -2,104 +2,38 @@ backend:
   name: git-gateway
   branch: main
 
-media_folder: images/uploads
-public_folder: /images/uploads
+media_folder: "images/uploads"
+public_folder: "/images/uploads"
 
 collections:
-  - name: games
-    label: Games
-    folder: games
+  - name: "games"
+    label: "Games"
+    folder: "games"
     create: true
     slug: "{{slug}}"
+
     fields:
-      - label: "Title"
-        name: "title"
-        widget: "string"
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Description", name: "description", widget: "text"}
+      - {label: "Body", name: "body", widget: "markdown"}
 
-      - label: "Description"
-        name: "description"
-        widget: "text"
+      - {label: "Download URL", name: "game_url", widget: "string"}
 
-      - label: "Body"
-        name: "body"
-        widget: "markdown"
+      - {label: "Thumbnail", name: "thumbnail", widget: "image"}
 
-      - label: "Game File URL"
-        name: "game_url"
-        widget: "string"
+      - {label: "Version", name: "version", widget: "string", required: false}
+      - {label: "Size", name: "size", widget: "string", required: false}
+      - {label: "Android", name: "android", widget: "string", required: false}
+      - {label: "Developer", name: "developer", widget: "string", required: false}
+      - {label: "Category", name: "category", widget: "string", required: false}
 
-      - label: "Thumbnail"
-        name: "thumbnail"
-        widget: "image"
-fields:
-  - label: "Title"
-    name: "title"
-    widget: "string"
+      - {label: "Screenshot 1", name: "screenshot1", widget: "image", required: false}
+      - {label: "Screenshot 2", name: "screenshot2", widget: "image", required: false}
+      - {label: "Screenshot 3", name: "screenshot3", widget: "image", required: false}
+      - {label: "Screenshot 4", name: "screenshot4", widget: "image", required: false}
+      - {label: "Screenshot 5", name: "screenshot5", widget: "image", required: false}
 
-  - label: "Description"
-    name: "description"
-    widget: "text"
-
-  - label: "Body"
-    name: "body"
-    widget: "markdown"
-
-  - label: "Version"
-    name: "version"
-    widget: "string"
-    default: "Latest"
-
-  - label: "Size"
-    name: "size"
-    widget: "string"
-
-  - label: "Android"
-    name: "android"
-    widget: "string"
-    default: "5.0+"
-
-  - label: "Developer"
-    name: "developer"
-    widget: "string"
-    default: "APK World"
-
-  - label: "Category"
-    name: "category"
-    widget: "string"
-
-  - label: "Game File URL"
-    name: "game_url"
-    widget: "string"
-
-  - label: "Thumbnail"
-    name: "thumbnail"
-    widget: "image"
-
-  - label: "Screenshot 1"
-    name: "screenshot1"
-    widget: "image"
-    required: false
-
-  - label: "Screenshot 2"
-    name: "screenshot2"
-    widget: "image"
-    required: false
-
-  - label: "Screenshot 3"
-    name: "screenshot3"
-    widget: "image"
-    required: false
-
-  - label: "Screenshot 4"
-    name: "screenshot4"
-    widget: "image"
-    required: false
-
-  - label: "Screenshot 5"
-    name: "screenshot5"
-    widget: "image"
-    required: false
-
-  - label: "MOD Features"
-    name: "features"
-    widget: "list"
+      - label: "MOD Features"
+        name: "features"
+        widget: "list"
+        required: false
