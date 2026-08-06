@@ -5,35 +5,118 @@ backend:
 media_folder: "images/uploads"
 public_folder: "/images/uploads"
 
+site_url: "https://classicgamesworld8.netlify.app"
+display_url: "https://classicgamesworld8.netlify.app"
+
 collections:
   - name: "games"
     label: "Games"
     folder: "games"
     create: true
     slug: "{{slug}}"
+    extension: "md"
+    format: "frontmatter"
 
     fields:
-      - {label: "Title", name: "title", widget: "string"}
-      - {label: "Description", name: "description", widget: "text"}
-      - {label: "Body", name: "body", widget: "markdown"}
 
-      - {label: "Download URL", name: "game_url", widget: "string"}
+      - label: "Title"
+        name: "title"
+        widget: "string"
 
-      - {label: "Thumbnail", name: "thumbnail", widget: "image"}
+      - label: "Slug"
+        name: "slug"
+        widget: "string"
 
-      - {label: "Version", name: "version", widget: "string", required: false}
-      - {label: "Size", name: "size", widget: "string", required: false}
-      - {label: "Android", name: "android", widget: "string", required: false}
-      - {label: "Developer", name: "developer", widget: "string", required: false}
-      - {label: "Category", name: "category", widget: "string", required: false}
+      - label: "Description"
+        name: "description"
+        widget: "text"
 
-      - {label: "Screenshot 1", name: "screenshot1", widget: "image", required: false}
-      - {label: "Screenshot 2", name: "screenshot2", widget: "image", required: false}
-      - {label: "Screenshot 3", name: "screenshot3", widget: "image", required: false}
-      - {label: "Screenshot 4", name: "screenshot4", widget: "image", required: false}
-      - {label: "Screenshot 5", name: "screenshot5", widget: "image", required: false}
+      - label: "Body"
+        name: "body"
+        widget: "markdown"
+
+      - label: "Download URL"
+        name: "game_url"
+        widget: "string"
+
+      - label: "Thumbnail"
+        name: "thumbnail"
+        widget: "image"
+
+      - label: "Version"
+        name: "version"
+        widget: "string"
+        required: false
+
+      - label: "Size"
+        name: "size"
+        widget: "string"
+        required: false
+
+      - label: "Android Version"
+        name: "android"
+        widget: "string"
+        required: false
+
+      - label: "Developer"
+        name: "developer"
+        widget: "string"
+        required: false
+
+      - label: "Category"
+        name: "category"
+        widget: "string"
+        required: false
+
+      - label: "Screenshot 1"
+        name: "screenshot1"
+        widget: "image"
+        required: false
+
+      - label: "Screenshot 2"
+        name: "screenshot2"
+        widget: "image"
+        required: false
+
+      - label: "Screenshot 3"
+        name: "screenshot3"
+        widget: "image"
+        required: false
+
+      - label: "Screenshot 4"
+        name: "screenshot4"
+        widget: "image"
+        required: false
+
+      - label: "Screenshot 5"
+        name: "screenshot5"
+        widget: "image"
+        required: false
 
       - label: "MOD Features"
         name: "features"
         widget: "list"
+        required: false
+
+      - label: "Rating"
+        name: "rating"
+        widget: "string"
+        required: false
+        default: "4.8"
+
+      - label: "Updated"
+        name: "updated"
+        widget: "datetime"
+        required: false
+
+      - label: "Featured"
+        name: "featured"
+        widget: "boolean"
+        default: false
+        required: false
+
+      - label: "Trending"
+        name: "trending"
+        widget: "boolean"
+        default: false
         required: false
