@@ -1,118 +1,136 @@
 "use strict";
 
-const params = new URLSearchParams(window.location.search);
-const slug = params.get("slug");
+/*==================================
+ APK World Game Loader
+==================================*/
 
-fetch("games/games/index.json")
-.then(res => res.json())
-.then(games => {
+document.addEventListener("DOMContentLoaded", loadGame);
 
-    const game = games.find(item => item.slug === slug);
+async function loadGame() {
 
-    if (!game) {
+    const params = new URLSearchParams(window.location.search);
+    const slug = params.get("slug");
+
+    if (!slug) {
         document.body.innerHTML =
         "<h2 style='text-align:center;margin-top:80px'>Game Not Found</h2>";
         return;
     }
 
-    // Page Title
-    document.title = game.title;
+    try {
 
-    // Hero
-    if(document.getElementById("gameTitle"))
-        document.getElementById("gameTitle").textContent = game.title;
+        const response = await fetch("games/games/index.json");
 
-    if(document.getElementById("gameDescription"))
-        document.getElementById("gameDescription").textContent = game.description;
+        if (!response.ok)
+            throw new Error("Unable to load data");
 
-    if(document.getElementById("gameImage"))
-        document.getElementById("gameImage").src = game.thumbnail;
+        const games = await response.json();
 
-    // Download Buttons
-    if(document.getElementById("downloadBtn"))
-        document.getElementById("downloadBtn").href = game.game_url;
+        const game = games.find(g => g.slug === slug);
 
-    if(document.getElementById("downloadButton"))
-        document.getElementById("downloadButton").href = game.game_url;
+        if (!game) {
 
-    if(document.getElementById("downloadTitle"))
-        document.getElementById("downloadTitle").textContent = game.title;
+            document.body.innerHTML =
+            "<h2 style='text-align:center;margin-top:80px'>Game Not Found</h2>";
 
-    if(document.getElementById("downloadDescription"))
-        document.getElementById("downloadDescription").textContent = game.description;
+            return;
 
-    // Meta Details
-    const version = document.getElementById("gameVersion");
-    if(version) version.textContent = game.version || "Latest";
+        }
 
-    const size = document.getElementById("gameSize");
-    if(size) size.textContent = game.size || "--";
-
-    const android = document.getElementById("gameAndroid");
-    if(android) android.textContent = game.android || "5.0+";
-
-    const developer = document.getElementById("gameDeveloper");
-    if(developer) developer.textContent = game.developer || "APK World";
-
-    const category = document.getElementById("gameCategory");
-    if(category) category.textContent = game.category || "Game";
-
-    // Screenshots
-    if(document.getElementById("ss1"))
-        document.getElementById("ss1").src =
-        game.screenshot1 || game.thumbnail;
-
-    if(document.getElementById("ss2"))
-        document.getElementById("ss2").src =
-        game.screenshot2 || game.thumbnail;
-
-    if(document.getElementById("ss3"))
-        document.getElementById("ss3").src =
-        game.screenshot3 || game.thumbnail;
-
-    if(document.getElementById("ss4"))
-        document.getElementById("ss4").src =
-        game.screenshot4 || game.thumbnail;
-
-    if(document.getElementById("ss5"))
-        document.getElementById("ss5").src =
-        game.screenshot5 || game.thumbnail;
-
-    // MOD Features
-    const list = document.getElementById("featureList");
-
-    if(list && Array.isArray(game.features)){
-
-        list.innerHTML="";
-
-        game.features.forEach(feature=>{
-
-            const li=document.createElement("li");
-
-            li.textContent=feature;
-
-            list.appendChild(li);
-
-        });
+        fillPage(game);
 
     }
 
-    // Hide Loader
-    const loader=document.getElementById("loader");
+    catch(error){
 
-    if(loader){
-        loader.style.display="none";
+        console.error(error);
+
     }
 
-})
-.catch(error=>{
+}
 
-    console.error(error);
+/*==================================
+ Fill Page
+==================================*/
 
-    const loader=document.getElementById("loader");
+function fillPage(game){
 
-    if(loader){
-        loader.style.display="none";
-    }
+document.title = game.title;
+
+/* Hero */
+
+setText("gameTitle",game.title);
+
+setText("gameDescription",game.description);
+
+setText("gameDeveloper",game.developer);
+
+setText("gameVersion",game.version);
+
+setText("gameSize",game.size);
+
+setText("gameAndroid",game.android);
+
+setText("gameCategory",game.category);
+
+setImage("gameImage",game.thumbnail);
+
+/* Download */
+
+setText("downloadTitle",game.title);
+
+setText("downloadDescription",game.description);
+
+setLink("downloadBtn",game.game_url);
+
+setLink("downloadButton",game.game_url);
+
+/* Screenshots */
+
+setImage("ss1",game.screenshot1);
+
+setImage("ss2",game.screenshot2);
+
+setImage("ss3",game.screenshot3);
+
+setImage("ss4",game.screenshot4);
+
+setImage("ss5",game.screenshot5);
+
+/* Body */
+
+setHTML("gameBody",game.body || "");
+
+/* Features */
+
+const featureList=document.getElementById("featureList");
+
+if(featureList){
+
+featureList.innerHTML="";
+
+if(Array.isArray(game.features)){
+
+game.features.forEach(item=>{
+
+featureList.innerHTML+=`<li>${item}</li>`;
 
 });
+
+}
+
+}
+
+/* Related Games */
+
+loadRelated(game);
+
+hideLoader();
+
+}
+
+/*==================================
+ Related Games
+==================================*/
+
+async
