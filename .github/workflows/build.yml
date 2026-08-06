@@ -1,31 +1,48 @@
-name: Build Games JSON
+name: APK World Auto Build
 
 on:
   push:
+    branches:
+      - main
+
     paths:
       - "games/**"
       - "build-games.js"
       - "package.json"
 
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
 jobs:
   build:
+
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
 
-      - uses: actions/setup-node@v4
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
           node-version: 20
 
-      - run: npm install
+      - name: Install Dependencies
+        run: npm install
 
-      - run: node build-games.js
+      - name: Generate index.json
+        run: npm run build
 
-      - name: Commit updated index.json
+      - name: Commit Generated Files
         run: |
           git config user.name "github-actions"
           git config user.email "github-actions@github.com"
+
           git add games/games/index.json
+
           git diff --cached --quiet || git commit -m "Auto update index.json"
+
           git push
