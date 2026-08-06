@@ -1,48 +1,49 @@
 name: APK World Auto Build
 
 on:
-  push:
-    branches:
-      - main
+push:
+branches:
+- main
+paths:
+- "games/**"
+- "build-games.js"
+- "package.json"
 
-    paths:
-      - "games/**"
-      - "build-games.js"
-      - "package.json"
-
-  workflow_dispatch:
+workflow_dispatch:
 
 permissions:
-  contents: write
+contents: write
 
 jobs:
-  build:
+build:
 
-    runs-on: ubuntu-latest
+runs-on: ubuntu-latest
 
-    steps:
+steps:
 
-      - name: Checkout Repository
-        uses: actions/checkout@v4
+  - name: Checkout Repository
+    uses: actions/checkout@v4
+    with:
+      token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
+  - name: Setup Node.js
+    uses: actions/setup-node@v4
+    with:
+      node-version: 22
 
-      - name: Install Dependencies
-        run: npm install
+  - name: Install Dependencies
+    run: npm install
 
-      - name: Generate index.json
-        run: npm run build
+  - name: Generate index.json
+    run: npm run build
 
-      - name: Commit Generated Files
-        run: |
-          git config user.name "github-actions"
-          git config user.email "github-actions@github.com"
+  - name: Commit Generated Files
+    run: |
+      git config user.name "github-actions"
+      git config user.email "github-actions@github.com"
 
-          git add games/games/index.json
+      git add games/games/index.json
 
-          git diff --cached --quiet || git commit -m "Auto update index.json"
+      git diff --cached --quiet || git commit -m "Auto update index.json"
 
-          git push
+      git push origin main
