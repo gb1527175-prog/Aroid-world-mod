@@ -1,15 +1,14 @@
 "use strict";
 
-/*=========================================
-  APK World CMS Loader
-  Part 1
-=========================================*/
+/*==================================
+ APK World CMS Loader
+==================================*/
 
 document.addEventListener("DOMContentLoaded", () => {
-    loadLatestGames();
+    loadGames();
 });
 
-async function loadLatestGames() {
+async function loadGames() {
 
     const grid = document.getElementById("latest-grid");
     const loader = document.getElementById("latest-loader");
@@ -21,214 +20,124 @@ async function loadLatestGames() {
         const response = await fetch("games/games/index.json");
 
         if (!response.ok) {
-            throw new Error("JSON not found");
+            throw new Error("Unable to load games.");
         }
 
         const games = await response.json();
 
+        loader.style.display = "none";
+
         if (!games.length) {
 
-            loader.style.display = "none";
-
             grid.innerHTML = `
-                <p style="padding:20px;text-align:center;">
-                    No games found.
+                <p class="no-posts">
+                    No Games Found
                 </p>
             `;
 
             return;
         }
 
-        loader.style.display = "none";
-
         grid.innerHTML = "";
 
         games.forEach(game => {
 
-            const card = createGameCard(game);
-
-            grid.appendChild(card);
+            grid.innerHTML += createCard(game);
 
         });
 
-    } catch (error) {
+    }
+
+    catch (error) {
 
         console.error(error);
 
-        if (loader) loader.style.display = "none";
+        loader.style.display = "none";
 
         grid.innerHTML = `
-            <p style="padding:20px;text-align:center;color:red;">
+            <p class="no-posts">
                 Failed to load games.
             </p>
         `;
-    }
-
-}
-
-/*=========================================
-  Create Card
-=========================================*/
-
-function createGameCard(game) {
-
-    const article = document.createElement("article");
-
-    article.className = "grid-card";
-
-    article.innerHTML = `
-        <a href="game.html?slug=${encodeURIComponent(game.slug)}">
-
-            <img
-                src="${game.thumbnail}"
-                alt="${game.title}"
-                loading="lazy">
-
-            <h3>${game.title}</h3>
-
-            <p>${game.description}</p>
-
-            <span class="download-btn">
-                Download
-            </span>
-
-        </a>
-    `;
-
-    return article;
-
-}
-/*=========================================
-  Create Card
-=========================================*/
-
-function createGameCard(game) {
-
-  return `
-    <article class="grid-card">
-
-      <a href="game.html?slug=${game.slug}">
-
-        <img
-          src="${game.thumbnail}"
-          alt="${game.title}"
-          loading="lazy">
-
-        <h3>${game.title}</h3>
-
-        <p>${game.description}</p>
-
-        <span class="download-btn">
-          Download
-        </span>
-
-      </a>
-
-    </article>
-  `;
-
-}
-
-
-/*=========================================
-  Render Games
-=========================================*/
-
-function renderGames(games) {
-
-  latestGrid.innerHTML = "";
-
-  if (!games || games.length === 0) {
-
-    latestGrid.innerHTML = `
-      <p class="no-posts">
-        No games available.
-      </p>
-    `;
-
-    return;
-  }
-
-  games.forEach(game => {
-
-    latestGrid.innerHTML += createGameCard(game);
-
-  });
-
-}
-
-
-/*=========================================
-  Hide Loader
-=========================================*/
-
-function hideLoader() {
-
-  if (loader) {
-
-    loader.style.display = "none";
-
-  }
-
-}
-/*=========================================
-  Load Games
-=========================================*/
-
-async function loadGames() {
-
-  try {
-
-    const response = await fetch("games/games/index.json");
-
-    if (!response.ok) {
-
-      throw new Error("Unable to load games.");
 
     }
 
-    const games = await response.json();
+}
 
-    renderGames(games);
+/*==================================
+ Create Card
+==================================*/
 
-  }
+function createCard(game){
 
-  catch (error) {
+return `
 
-    console.error(error);
+<article class="grid-card">
 
-    latestGrid.innerHTML = `
-      <p class="no-posts">
-        Failed to load games.
-      </p>
-    `;
+<a href="game.html?slug=${encodeURIComponent(game.slug)}">
 
-  }
+<img
+src="${game.thumbnail}"
+alt="${game.title}"
+loading="lazy">
 
-  finally {
+<h3>${game.title}</h3>
 
-    hideLoader();
+<p>${game.description}</p>
 
-  }
+<div class="rating">
+
+★★★★★
+
+<span>${game.rating || "4.8"}</span>
+
+</div>
+
+<span class="download-btn">
+
+Download
+
+</span>
+
+</a>
+
+</article>
+
+`;
 
 }
 
+/*==================================
+ Search
+==================================*/
 
-/*=========================================
-  Init
-=========================================*/
+function filterGames(keyword){
 
-document.addEventListener("DOMContentLoaded", () => {
+const cards=document.querySelectorAll(".grid-card");
 
-  if (latestGrid) {
+keyword=keyword.toLowerCase();
 
-    loadGames();
+cards.forEach(card=>{
 
-  }
+const title=card.innerText.toLowerCase();
+
+card.style.display=
+title.includes(keyword)
+? ""
+: "none";
 
 });
 
+}
 
-/*=========================================
-  End of cms-loader.js
-=========================================*/
+const search=document.getElementById("searchInput");
+
+if(search){
+
+search.addEventListener("keyup",e=>{
+
+filterGames(e.target.value);
+
+});
+
+}
