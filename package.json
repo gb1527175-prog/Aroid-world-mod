@@ -1,11 +1,15 @@
 {
   "name": "apk-world",
   "version": "1.0.0",
+  "description": "APK World Google Play Store Style Website",
   "private": true,
   "scripts": {
     "build": "node build-games.js"
   },
   "dependencies": {
     "gray-matter": "^4.0.3"
+  },
+  "engines": {
+    "node": ">=18"
   }
 }
